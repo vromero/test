@@ -1,0 +1,57 @@
+<html>
+
+<head>
+
+<script>
+
+        // Función que se ejecuta cuando se envía el formulario
+        function enviarMensaje() {
+	    	var ws = new WebSocket("ws://localhost:30303");
+            
+            	// Obtener el mensaje del campo de texto
+            	var msg = document.getElementById("message").value;
+
+		console.log(msg);
+
+		ws.onopen = () => {
+  			ws.send("Websocket : " + msg);
+		};
+
+            	document.getElementById("message").value = "";
+        }
+    </script>
+
+</head>
+
+<body>
+
+<center>
+<br>
+<br>
+<p>Send a message to the local app using protocol handler:</p>
+
+<form action="action://yadayada/" method="get">
+  <label for="fname">Message:</label>
+  <input type="text" id="msg" name="msg"><br><br>
+<input type="submit" value="Submit">
+</form>
+</center>
+
+<hr>
+<br>
+<center>
+
+<p>Send a message to the local app using websockets:</p>
+
+<form onsubmit="enviarMensaje(); return false;">
+        <input type="text" id="message" placeholder="Escribe tu mensaje aquí" />
+        <input type="submit" value="Enviar" />
+</form>
+
+</center>
+
+
+</body>
+
+
+</html>
